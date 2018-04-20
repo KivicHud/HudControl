@@ -1,0 +1,6 @@
+framework module KivicCast {
+  umbrella header "KivicCast.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module KivicNetwork {
+  umbrella header "KivicNetwork.h"
+
+  export *
+  module * { export * }
+}
