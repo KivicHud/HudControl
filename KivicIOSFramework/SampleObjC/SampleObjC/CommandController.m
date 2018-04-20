@@ -21,6 +21,7 @@
     _appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
     if(_appDelegate.networkManager.isConnected) { // if Kivic HUD is connected
+        [self sendSystemTime];
         [self sendBacklight:YES];
         [self sendSpeedColor:0xFFFFFFFF];
         [self sendSpeedUnit:KM_PER_HOUR];
@@ -75,6 +76,21 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     });
+}
+
+-(BOOL) sendSystemTime {
+    SystemTimeCommandPacket* systemTimeCommandPacket = [[SystemTimeCommandPacket alloc] init];
+    
+    systemTimeCommandPacket.timeZoneId = [NSTimeZone systemTimeZone].name;
+    systemTimeCommandPacket.timeInMillis = (int64_t)([[NSDate date] timeIntervalSince1970]*1000);
+    if([_appDelegate.networkManager sendPacket:systemTimeCommandPacket]) {
+        DisplayTimeCommandPacket* displayTimeCommandPacket = [[DisplayTimeCommandPacket alloc] init];
+        
+        displayTimeCommandPacket.isEnable = YES;
+        return [_appDelegate.networkManager sendPacket:displayTimeCommandPacket];
+    }
+    
+    return NO;
 }
 
 -(BOOL) sendSpeedColor:(int32_t) speedColor {
