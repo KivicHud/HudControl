@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dip"
+    android:layout_height="300dip"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="70dip"
+        android:paddingLeft="6.67dip"
+        android:paddingRight="6.67dip"
+        android:background="#C7C7C7"         
+        android:gravity="center_vertical"
+        android:drawablePadding="1.67dip"
+        android:text="Bluetooth sound"
+        android:textColor="#FFFFFF"
+        android:textSize="26.67sp" >
+    </TextView>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="166dip">
+        <ListView
+	        android:id="@+id/listview"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:divider="#C7C7C7"
+	        android:dividerHeight="1.33dip"
+	        android:choiceMode="singleChoice">            
+	    </ListView>        
+	    <TextView 
+	        android:id="@+id/empty"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="true"
+	        android:text="There is no bluetooth devices."
+	        android:textColor="#999999"
+	        android:textSize="20sp">	        
+	    </TextView>
+    </RelativeLayout>    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="64dip"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/scan"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="1.33dip"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/btn_cancel"
+            android:text="@string/scan"
+            android:textColor="#FFFFFF">            
+        </Button>
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="1.33dip"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@drawable/btn_cancel"
+            android:text="@string/cancel"
+            android:textColor="#FFFFFF">            
+        </Button>
+   </LinearLayout>
+</LinearLayout>

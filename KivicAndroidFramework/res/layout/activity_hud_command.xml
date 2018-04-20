@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff5b5b5b"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="#ffffffff"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dip"
+            android:text="@string/command"
+            android:textColor="#ffea5515"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/command_back_btn"
+            android:layout_width="34dip"
+            android:layout_height="34dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dip"
+            android:background="@drawable/btn_back" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/title_layout"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/command_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_marginTop="30dip"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/bright_enable_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="70dip"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/brightness_enable_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/brightness_enable"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp" />
+
+                    <ToggleButton
+                        android:id="@+id/brightness_enable_sw"
+                        android:layout_width="88dip"
+                        android:layout_height="44dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/switch_bg"
+                        android:checked="true"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/speed_color_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_below="@+id/bright_enable_layout"                    
+                    android:background="@drawable/btn_mode"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/speed_color_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="65dip"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/speed_color"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/speed_color_submenu_img"
+                        android:layout_width="15dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bt_submenu_nor" />
+
+                    <TextView
+                        android:id="@+id/speed_color_select_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/speed_color_submenu_img"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff1a1a"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/speed_units_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_below="@+id/speed_color_layout"                    
+                    android:background="@drawable/btn_mode"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/speed_units_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="65dip"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/speed_unit"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/speed_units_submenu_img"
+                        android:layout_width="15dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bt_submenu_nor" />
+
+                    <TextView
+                        android:id="@+id/speed_units_select_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/speed_units_submenu_img"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff1a1a"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/keystone_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dip"
+                    android:layout_below="@+id/speed_units_layout"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/keystone_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dip"
+                        android:text="@string/keystone_name"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
+                    <SeekBar
+                        android:id="@+id/keystone_seekbar"
+                        style="@style/CustSeekBar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/seek_bar"
+                        android:thumb="@drawable/seek_thumb" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/kivic_mode_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_below="@+id/keystone_layout"                    
+                    android:background="@drawable/btn_mode"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/kivic_mode_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="65dip"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/kivic_mode"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/kivic_mode_submenu_img"
+                        android:layout_width="15dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bt_submenu_nor" />
+
+                    <TextView
+                        android:id="@+id/kivic_mode_select_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/kivic_mode_submenu_img"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff1a1a"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+                
+                
+                <RelativeLayout
+                    android:id="@+id/hotspot_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/kivic_mode_layout"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip" >
+
+                    <TextView
+                        android:id="@+id/hotspot_content_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="100dip"
+                        android:gravity="center"
+                        android:text="@string/hotspot_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/hotspot_ssid_txt"
+                        android:layout_width="80dip"
+                        android:layout_height="40dip"
+                        android:layout_below="@+id/hotspot_content_txt"
+                        android:gravity="center_vertical"
+                        android:text="@string/hotspot_name"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/hotspot_ssid_etx"
+                        android:layout_width="200dip"
+                        android:layout_height="40dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="10dip"
+                        android:layout_below="@+id/hotspot_content_txt"
+                        android:layout_toRightOf="@+id/hotspot_ssid_txt"
+                        android:background="@drawable/edittext_round" />
+
+                    <TextView
+                        android:id="@+id/hotspot_password_txt"
+                        android:layout_width="80dip"
+                        android:layout_height="40dip"
+                        android:layout_below="@+id/hotspot_ssid_txt"
+                        android:layout_marginTop="10dip"
+                        android:gravity="center_vertical"
+                        android:text="@string/hotspot_pw"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/hotspot_password_etx"
+                        android:layout_width="200dip"
+                        android:layout_height="40dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/hotspot_ssid_txt"
+                        android:layout_marginTop="10dip"
+                        android:layout_marginLeft="10dip"
+                        android:layout_toRightOf="@+id/hotspot_password_txt"
+                        android:background="@drawable/edittext_round" />
+
+                    <ImageView
+                        android:id="@+id/hotspot_line01"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:layout_below="@+id/hotspot_password_etx"                        
+                        android:layout_marginTop="20dip"
+                        android:background="#ff404040" />
+                    
+                </RelativeLayout>
+                
+
+                <RelativeLayout
+                    android:id="@+id/hud_kivic_screen_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_below="@+id/hotspot_layout"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/kivic_screen_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:enabled="false"
+                        android:text="@string/kivic_full_screen"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp" />
+
+                    <ToggleButton
+                        android:id="@+id/kivic_screen_sw"
+                        android:layout_width="88dip"
+                        android:layout_height="46dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/switch_bg"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

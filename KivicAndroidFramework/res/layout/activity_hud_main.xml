@@ -1,0 +1,275 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff5b5b5b"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/title_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:background="#ffffffff"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/title_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dip"
+                android:text="@string/app_name"
+                android:textColor="#ffea5515"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/title_layout"
+            android:layout_marginBottom="70dip"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/hud_connect_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_marginTop="65dip"
+                    android:background="@drawable/btn_mode"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/hud_connect_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="65dip"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/hud_connect"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/hud_connect_submenu_img"
+                        android:layout_width="15dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bt_submenu_nor" />
+
+                    <TextView
+                        android:id="@+id/mode_select_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/hud_connect_submenu_img"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff1a1a"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hud_notification_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_below="@+id/hud_connect_layout"
+                    android:layout_marginTop="20dip"
+                    android:background="@drawable/btn_mode"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/hud_notification_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="65dip"
+                        android:layout_marginLeft="20dp"
+                        android:enabled="false"
+                        android:gravity="center_vertical"
+                        android:text="@string/notification"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/hud_notification_submenu_img"
+                        android:layout_width="15dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bt_submenu_nor" />
+
+                    <TextView
+                        android:id="@+id/hud_notification_select_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/hud_notification_submenu_img"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff1a1a"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hud_command_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_below="@+id/hud_notification_layout"
+                    android:layout_marginTop="20dip"
+                    android:background="@drawable/btn_mode"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/hud_command_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="65dip"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/command"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/hud_command_submenu_img"
+                        android:layout_width="15dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bt_submenu_nor" />
+
+                    <TextView
+                        android:id="@+id/hud_command_select_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/hud_command_submenu_img"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff1a1a"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/hud_update_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="65dip"
+                    android:layout_below="@+id/hud_command_layout"
+                    android:layout_marginTop="20dip"
+                    android:background="@drawable/btn_mode"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/hud_update_txt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="65dip"
+                        android:layout_marginLeft="20dp"
+                        android:enabled="false"
+                        android:gravity="center_vertical"
+                        android:text="@string/software_update_name"
+                        android:textColor="@drawable/toggle_text_color"
+                        android:textSize="18sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/hud_update_submenu_img"
+                        android:layout_width="15dip"
+                        android:layout_height="20dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bt_submenu_nor" />
+
+                    <TextView
+                        android:id="@+id/hud_update_select_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dip"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/hud_update_submenu_img"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff1a1a"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/connection_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <RelativeLayout
+            android:id="@+id/connection_title_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:background="#ffffffff"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/connection_title_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:text="@string/hud_connect"
+                android:textColor="#ffea5515"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/connection_back_btn"
+                android:layout_width="34dip"
+                android:layout_height="34dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dip"
+                android:background="@drawable/btn_back" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/hud_enable_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="65dip"
+            android:layout_below="@+id/connection_title_layout"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/hud_enable_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:enabled="false"
+                android:text="@string/hud_ble"
+                android:textColor="@drawable/toggle_text_color"
+                android:textSize="18sp" />
+
+            <ToggleButton
+                android:id="@+id/hud_sw"
+                android:layout_width="88dip"
+                android:layout_height="46dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/switch_bg"
+                android:textOff=""
+                android:textOn="" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
