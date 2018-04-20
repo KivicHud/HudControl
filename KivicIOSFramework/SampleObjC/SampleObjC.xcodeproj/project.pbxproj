@@ -1,0 +1,558 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		504F04DB208843F30034D9DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F04DA208843F30034D9DC /* AppDelegate.m */; };
+		504F04E1208843F30034D9DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504F04DF208843F30034D9DC /* Main.storyboard */; };
+		504F04E3208843F40034D9DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504F04E2208843F40034D9DC /* Assets.xcassets */; };
+		504F04E6208843F40034D9DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504F04E4208843F40034D9DC /* LaunchScreen.storyboard */; };
+		504F04E9208843F40034D9DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F04E8208843F40034D9DC /* main.m */; };
+		504F04F1208854920034D9DC /* ConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F04F0208854920034D9DC /* ConnectionController.m */; };
+		504F04F4208854B40034D9DC /* BleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F04F3208854B40034D9DC /* BleListViewController.m */; };
+		504F04F7208854D20034D9DC /* CommandController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F04F6208854D20034D9DC /* CommandController.m */; };
+		504F050720885AA80034D9DC /* KivicCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504F04FB208856D10034D9DC /* KivicCast.framework */; };
+		504F050820885AB80034D9DC /* KivicNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504F04F9208856C90034D9DC /* KivicNetwork.framework */; };
+		504F050B20885CE90034D9DC /* HudNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F050A20885CE90034D9DC /* HudNetworkManager.m */; };
+		504F0512208998360034D9DC /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504F0511208998360034D9DC /* ReplayKit.framework */; };
+		504F0516208998360034D9DC /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F0515208998360034D9DC /* SampleHandler.m */; };
+		504F051A208998360034D9DC /* KivicCastObjC.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 504F0510208998360034D9DC /* KivicCastObjC.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		504F051F2089984A0034D9DC /* KivicCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504F04FB208856D10034D9DC /* KivicCast.framework */; };
+		504F05222089A0750034D9DC /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504F05212089A0750034D9DC /* MainViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		504F0518208998360034D9DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504F04CE208843F30034D9DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 504F050F208998360034D9DC;
+			remoteInfo = KivicCastObjC;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		504F051E208998360034D9DC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				504F051A208998360034D9DC /* KivicCastObjC.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		504F04D6208843F30034D9DC /* SampleObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		504F04D9208843F30034D9DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		504F04DA208843F30034D9DC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		504F04E0208843F30034D9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		504F04E2208843F40034D9DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		504F04E5208843F40034D9DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		504F04E7208843F40034D9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		504F04E8208843F40034D9DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		504F04EF208854920034D9DC /* ConnectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionController.h; sourceTree = "<group>"; };
+		504F04F0208854920034D9DC /* ConnectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionController.m; sourceTree = "<group>"; };
+		504F04F2208854B40034D9DC /* BleListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BleListViewController.h; sourceTree = "<group>"; };
+		504F04F3208854B40034D9DC /* BleListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BleListViewController.m; sourceTree = "<group>"; };
+		504F04F5208854D20034D9DC /* CommandController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommandController.h; sourceTree = "<group>"; };
+		504F04F6208854D20034D9DC /* CommandController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommandController.m; sourceTree = "<group>"; };
+		504F04F9208856C90034D9DC /* KivicNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KivicNetwork.framework; path = ../KivicNetwork.framework; sourceTree = "<group>"; };
+		504F04FB208856D10034D9DC /* KivicCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KivicCast.framework; path = ../KivicCast.framework; sourceTree = "<group>"; };
+		504F050920885CE90034D9DC /* HudNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudNetworkManager.h; sourceTree = "<group>"; };
+		504F050A20885CE90034D9DC /* HudNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudNetworkManager.m; sourceTree = "<group>"; };
+		504F0510208998360034D9DC /* KivicCastObjC.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KivicCastObjC.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		504F0511208998360034D9DC /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		504F0514208998360034D9DC /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
+		504F0515208998360034D9DC /* SampleHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
+		504F0517208998360034D9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		504F05202089A0740034D9DC /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		504F05212089A0750034D9DC /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		504F04D3208843F30034D9DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504F050820885AB80034D9DC /* KivicNetwork.framework in Frameworks */,
+				504F050720885AA80034D9DC /* KivicCast.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		504F050D208998360034D9DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504F051F2089984A0034D9DC /* KivicCast.framework in Frameworks */,
+				504F0512208998360034D9DC /* ReplayKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		504F04CD208843F30034D9DC = {
+			isa = PBXGroup;
+			children = (
+				504F04D8208843F30034D9DC /* SampleObjC */,
+				504F0513208998360034D9DC /* KivicCastObjC */,
+				504F04D7208843F30034D9DC /* Products */,
+				504F04F8208856C90034D9DC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		504F04D7208843F30034D9DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				504F04D6208843F30034D9DC /* SampleObjC.app */,
+				504F0510208998360034D9DC /* KivicCastObjC.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		504F04D8208843F30034D9DC /* SampleObjC */ = {
+			isa = PBXGroup;
+			children = (
+				504F050920885CE90034D9DC /* HudNetworkManager.h */,
+				504F050A20885CE90034D9DC /* HudNetworkManager.m */,
+				504F04D9208843F30034D9DC /* AppDelegate.h */,
+				504F04DA208843F30034D9DC /* AppDelegate.m */,
+				504F04DF208843F30034D9DC /* Main.storyboard */,
+				504F04E2208843F40034D9DC /* Assets.xcassets */,
+				504F04E4208843F40034D9DC /* LaunchScreen.storyboard */,
+				504F04E7208843F40034D9DC /* Info.plist */,
+				504F04E8208843F40034D9DC /* main.m */,
+				504F04EF208854920034D9DC /* ConnectionController.h */,
+				504F04F0208854920034D9DC /* ConnectionController.m */,
+				504F04F2208854B40034D9DC /* BleListViewController.h */,
+				504F04F3208854B40034D9DC /* BleListViewController.m */,
+				504F04F5208854D20034D9DC /* CommandController.h */,
+				504F04F6208854D20034D9DC /* CommandController.m */,
+				504F05202089A0740034D9DC /* MainViewController.h */,
+				504F05212089A0750034D9DC /* MainViewController.m */,
+			);
+			path = SampleObjC;
+			sourceTree = "<group>";
+		};
+		504F04F8208856C90034D9DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				504F04FB208856D10034D9DC /* KivicCast.framework */,
+				504F04F9208856C90034D9DC /* KivicNetwork.framework */,
+				504F0511208998360034D9DC /* ReplayKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		504F0513208998360034D9DC /* KivicCastObjC */ = {
+			isa = PBXGroup;
+			children = (
+				504F0514208998360034D9DC /* SampleHandler.h */,
+				504F0515208998360034D9DC /* SampleHandler.m */,
+				504F0517208998360034D9DC /* Info.plist */,
+			);
+			path = KivicCastObjC;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		504F04D5208843F30034D9DC /* SampleObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 504F04EC208843F40034D9DC /* Build configuration list for PBXNativeTarget "SampleObjC" */;
+			buildPhases = (
+				504F04D2208843F30034D9DC /* Sources */,
+				504F04D3208843F30034D9DC /* Frameworks */,
+				504F04D4208843F30034D9DC /* Resources */,
+				504F04FD208856DB0034D9DC /* ShellScript */,
+				504F051E208998360034D9DC /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				504F0519208998360034D9DC /* PBXTargetDependency */,
+			);
+			name = SampleObjC;
+			productName = SampleObjC;
+			productReference = 504F04D6208843F30034D9DC /* SampleObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		504F050F208998360034D9DC /* KivicCastObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 504F051B208998360034D9DC /* Build configuration list for PBXNativeTarget "KivicCastObjC" */;
+			buildPhases = (
+				504F050C208998360034D9DC /* Sources */,
+				504F050D208998360034D9DC /* Frameworks */,
+				504F050E208998360034D9DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KivicCastObjC;
+			productName = KivicCastObjC;
+			productReference = 504F0510208998360034D9DC /* KivicCastObjC.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		504F04CE208843F30034D9DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = kivic;
+				TargetAttributes = {
+					504F04D5208843F30034D9DC = {
+						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					504F050F208998360034D9DC = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = 504F04D1208843F30034D9DC /* Build configuration list for PBXProject "SampleObjC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 504F04CD208843F30034D9DC;
+			productRefGroup = 504F04D7208843F30034D9DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				504F04D5208843F30034D9DC /* SampleObjC */,
+				504F050F208998360034D9DC /* KivicCastObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		504F04D4208843F30034D9DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504F04E6208843F40034D9DC /* LaunchScreen.storyboard in Resources */,
+				504F04E3208843F40034D9DC /* Assets.xcassets in Resources */,
+				504F04E1208843F30034D9DC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		504F050E208998360034D9DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		504F04FD208856DB0034D9DC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../KivicCast.framework",
+				"$(SRCROOT)/../KivicNetwork.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		504F04D2208843F30034D9DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504F04F1208854920034D9DC /* ConnectionController.m in Sources */,
+				504F04E9208843F40034D9DC /* main.m in Sources */,
+				504F050B20885CE90034D9DC /* HudNetworkManager.m in Sources */,
+				504F04F7208854D20034D9DC /* CommandController.m in Sources */,
+				504F05222089A0750034D9DC /* MainViewController.m in Sources */,
+				504F04F4208854B40034D9DC /* BleListViewController.m in Sources */,
+				504F04DB208843F30034D9DC /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		504F050C208998360034D9DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				504F0516208998360034D9DC /* SampleHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		504F0519208998360034D9DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 504F050F208998360034D9DC /* KivicCastObjC */;
+			targetProxy = 504F0518208998360034D9DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		504F04DF208843F30034D9DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				504F04E0208843F30034D9DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		504F04E4208843F40034D9DC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				504F04E5208843F40034D9DC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		504F04EA208843F40034D9DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		504F04EB208843F40034D9DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		504F04ED208843F40034D9DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLQ4PJ8M6R;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../";
+				INFOPLIST_FILE = SampleObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kivic.hud.SampleObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		504F04EE208843F40034D9DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLQ4PJ8M6R;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../";
+				INFOPLIST_FILE = SampleObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kivic.hud.SampleObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		504F051C208998360034D9DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLQ4PJ8M6R;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../";
+				INFOPLIST_FILE = KivicCastObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kivic.hud.SampleObjC.KivicCastObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		504F051D208998360034D9DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NLQ4PJ8M6R;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../";
+				INFOPLIST_FILE = KivicCastObjC/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kivic.hud.SampleObjC.KivicCastObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		504F04D1208843F30034D9DC /* Build configuration list for PBXProject "SampleObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				504F04EA208843F40034D9DC /* Debug */,
+				504F04EB208843F40034D9DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		504F04EC208843F40034D9DC /* Build configuration list for PBXNativeTarget "SampleObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				504F04ED208843F40034D9DC /* Debug */,
+				504F04EE208843F40034D9DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		504F051B208998360034D9DC /* Build configuration list for PBXNativeTarget "KivicCastObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				504F051C208998360034D9DC /* Debug */,
+				504F051D208998360034D9DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 504F04CE208843F30034D9DC /* Project object */;
+}
