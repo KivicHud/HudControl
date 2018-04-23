@@ -17,7 +17,7 @@ Install [Boot animation creator](https://docs.google.com/file/d/0B_TsLfIpuP_ac3N
 
 ## Install HudBootAnimation.exe
 
-* Decompress KivicHudDisplay.zip to anywhere.
+* Copy KivicHudDisplay folder to anywhere.
 * Unplug Kivic HUD from your computer.
 * Install USB driver.
 
