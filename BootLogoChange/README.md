@@ -28,4 +28,4 @@ Please note that the System version of Kivic HUD is less than 2.1.0, you need to
 * Plug Kivic hud into your computer.
 * Run HudBootAnimation.exe and wait until USB device detected.
 * Click down arrow button to apply logo image.
-* Select a bootanimation.zip for hudway.
+* Select a bootanimation.zip for Kivic HUD.
