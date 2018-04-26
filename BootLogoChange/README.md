@@ -23,7 +23,7 @@ Install [Boot animation creator](https://docs.google.com/file/d/0B_TsLfIpuP_ac3N
 
 ## Apply boot logo via HudBootAnimation
 
-Please note that the System version of Kivic HUD is less than 2.1.0, you need to update HUD firmware.
+Please note that if the System version of Kivic HUD is less than 2.1.0, you need to update HUD firmware.
 
 * Plug Kivic hud into your computer.
 * Run HudBootAnimation.exe and wait until USB device detected.
