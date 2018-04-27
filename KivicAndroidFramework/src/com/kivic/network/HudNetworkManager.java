@@ -189,25 +189,7 @@ public class HudNetworkManager extends HudNetwork {
 		}
 	};
 
-	private BroadcastReceiver mBluetoothReceiver = new BroadcastReceiver() {		
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			final String action = intent.getAction();
-			if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
-				int actualState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.STATE_OFF);
-				// 10, 12
-				if(actualState == BluetoothAdapter.STATE_OFF)
-				{					
-					Message.obtain(internalHandler, WHAT_GATT_ACTION_STATE, BluetoothAdapter.STATE_OFF, 0).sendToTarget();
-				}
-				else if(actualState == BluetoothAdapter.STATE_ON)
-				{				
-					Message.obtain(internalHandler, WHAT_GATT_ACTION_STATE, BluetoothAdapter.STATE_ON, 0).sendToTarget();					
-				}
-			}
-
-		}
-	};
+	private BroadcastReceiver mBluetoothReceiver = null;
 	private IntentFilter makeIntentFilter() {
 		final IntentFilter intentFilter = new IntentFilter();
 	    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
@@ -234,12 +216,36 @@ public class HudNetworkManager extends HudNetwork {
 
 	public void registerActionStateChange()
 	{
-		this.context.registerReceiver(mBluetoothReceiver, makeIntentFilter());
+		if(mBluetoothReceiver == null) {
+			mBluetoothReceiver = new BroadcastReceiver() {		
+				@Override
+				public void onReceive(Context context, Intent intent) {
+					final String action = intent.getAction();
+					if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+						int actualState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.STATE_OFF);
+						// 10, 12
+						if(actualState == BluetoothAdapter.STATE_OFF)
+						{											
+							Message.obtain(internalHandler, WHAT_GATT_ACTION_STATE, BluetoothAdapter.STATE_OFF, 0).sendToTarget();
+						}
+						else if(actualState == BluetoothAdapter.STATE_ON)
+						{
+							Message.obtain(internalHandler, WHAT_GATT_ACTION_STATE, BluetoothAdapter.STATE_ON, 0).sendToTarget();					
+						}
+					}
+
+				}
+			};
+			this.context.registerReceiver(mBluetoothReceiver, makeIntentFilter());
+		}
 	}
 
 	public void unregisterActionStateChange()
 	{
-		this.context.unregisterReceiver(mBluetoothReceiver);
+		if(mBluetoothReceiver != null) {
+			this.context.unregisterReceiver(mBluetoothReceiver);
+			mBluetoothReceiver = null;
+		}
 	}
 
 	public void registerGattStateChangeListener(OnGattStateChangeListener listener) {
@@ -389,6 +395,12 @@ public class HudNetworkManager extends HudNetwork {
 	 * 스택에 쌓여있는 Commnad를 순차적으로 보냄.
 	 */
 	private void sendRemainPacket(){
+		
+		if (bluetoothGatt == null || writeCharacteristic == null
+				|| gattConnectionState != BluetoothProfile.STATE_CONNECTED) {
+			return;
+		}
+		
 		byte[] sendMsg;
 		
 		if(mCurrentSendPacket != null && mCurrentSendPacket.length > SEND_MSG_MAX_LENGTH)
