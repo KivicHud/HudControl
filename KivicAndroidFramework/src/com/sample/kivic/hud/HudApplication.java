@@ -2,13 +2,19 @@ package com.sample.kivic.hud;
 
 import java.util.HashSet;
 
-import com.kivic.network.HudNetworkManager;
+import com.kivic.network.HudNetworkService;
 
 import android.app.Activity;
 import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Messenger;
 import android.util.Log;
 
@@ -24,7 +30,8 @@ public class HudApplication extends Application implements ActivityLifecycleCall
 	public static final int DEFAULT_KEEP_ALIVE_TIMEOUT = 10000;
 	public static final float MAX_KEYSTONE = 0.1f;
 	public static final int DEFAULT_KIVICCAST_SCALE = 50;
-	public HudNetworkManager hudNetworkManager = null;		
+	//public HudNetworkManager hudNetworkManager = null;
+	public HudNetworkService hudNetworkManager = null;
 	public SharedPreferences settings = null;
 	public SharedPreferences.Editor editor = null;	
 
@@ -36,13 +43,14 @@ public class HudApplication extends Application implements ActivityLifecycleCall
 	private int hudMode = 0;	
 		
 	Messenger castMessenger                                               = null;
+	private OnHudNetworkServiceChanged hudNetworkServiceChangedListener = null;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 
 		Log.i("hudApplication", "HudApplication create");
-		hudNetworkManager = new HudNetworkManager(this);		
+		//hudNetworkManager = new HudNetworkManager(this);
 		settings = getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
 		editor = settings.edit();
 		
@@ -53,8 +61,8 @@ public class HudApplication extends Application implements ActivityLifecycleCall
 	@Override
 	public void onTerminate() {
 		cleanUp();
-		hudNetworkManager.unregisterActionStateChange();
-		hudNetworkManager = null;
+		/*hudNetworkManager.unregisterActionStateChange();
+		hudNetworkManager = null;*/
 		super.onTerminate();
 	}
 	
@@ -149,5 +157,58 @@ public class HudApplication extends Application implements ActivityLifecycleCall
 	public void setHUDMode(int hudMode) {
 		this.hudMode = hudMode;
 	}
+	
+	public boolean isSupportingKivicCast() {
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			//TODO if the device is poor, you can return false.
+			return true;
+		}
+		
+		return false;
+	}
+	// Hud Network Service
+	public void restartHudNetworkService()
+	{
+		startHudNetworkService();
+	}
+	public void closeHudNetworkService()
+	{
+		if(hudNetworkManager != null)
+		{
+			Log.e("hud", "unbindService hudNetworkService");
+			unbindService(hudNetworkServiceConnection);
+		}
+	}
 
+	public void setOnHudNetworkServiceChanged(OnHudNetworkServiceChanged listener) {
+		hudNetworkServiceChangedListener = listener;
+	}
+	
+	public interface OnHudNetworkServiceChanged {
+		public void onHudNetworkServiceChanged(boolean isConnect);
+	}
+	
+	ServiceConnection hudNetworkServiceConnection                               = null;
+	private void startHudNetworkService()
+	{
+		hudNetworkServiceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+            	
+            	HudNetworkService.hudNetworkBinder mb = (HudNetworkService.hudNetworkBinder) service;
+            	hudNetworkManager = mb.getService();
+                
+            	Log.e("hud", "hudNetworkServiceConnection onServiceConnected");
+            	hudNetworkServiceChangedListener.onHudNetworkServiceChanged(true);
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+            	hudNetworkServiceChangedListener.onHudNetworkServiceChanged(false);
+            	Log.e("hud", "hudNetworkServiceConnection onServiceDisconnected");
+            }
+        };
+
+        bindService(new Intent(getApplicationContext(), HudNetworkService.class), hudNetworkServiceConnection, Context.BIND_AUTO_CREATE);
+	}
 }

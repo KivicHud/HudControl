@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class CommandActivity extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
@@ -48,9 +49,8 @@ public class CommandActivity extends Activity implements View.OnClickListener, S
 	private static final int SPEED_UNIT_KMH          = 0;
 	private static final int SPEED_UNIT_MPH          = 1;
 			
-	private static final int ITEM_MODE_HUD                = 0;
-	private static final int ITEM_MODE_NAVIGATION         = 1;	
-	private static final int ITEM_MODE_KIVICCAST          = 2;
+	private static final int ITEM_MODE_HUD                = 0;	
+	private static final int ITEM_MODE_KIVICCAST          = 1;
 	
 	private TextView mKivicScreenTxt;
 	private ToggleButton mKivicScreen_sw;
@@ -78,7 +78,11 @@ public class CommandActivity extends Activity implements View.OnClickListener, S
 	    overridePendingTransition(0,0);
 	    initView();
 	    loadSetting();
-	    startKivicCast();
+	    
+	    if(hudApplication.isSupportingKivicCast())
+	    	startKivicCast();
+	    else
+	    	Toast.makeText(getApplicationContext(), "This phone does not support mirroring.", Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override
@@ -194,9 +198,7 @@ public class CommandActivity extends Activity implements View.OnClickListener, S
 
 		// mode		
 		if(mModeIdx == ITEM_MODE_KIVICCAST)
-			mModeSelectTxt.setText(R.string.kivic_cast_title);
-		else if(mModeIdx == ITEM_MODE_NAVIGATION)
-			mModeSelectTxt.setText(R.string.navigation_name);
+			mModeSelectTxt.setText(R.string.kivic_cast_title);		
 		else			
 			mModeSelectTxt.setText(R.string.hud_ble);
 		
@@ -315,9 +317,9 @@ public class CommandActivity extends Activity implements View.OnClickListener, S
 
 		// List Adapter 생성
 		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
-		adapter.add(getString(R.string.hud_ble));		
-		adapter.add(getString(R.string.navigation_name));
-		adapter.add(getString(R.string.kivic_cast_title));
+		adapter.add(getString(R.string.hud_ble));
+		if(hudApplication.isSupportingKivicCast())
+			adapter.add(getString(R.string.kivic_cast_title));
 		
 		// cancel
 		alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -341,12 +343,7 @@ public class CommandActivity extends Activity implements View.OnClickListener, S
 				{
 					mHudMode = KivicModeCommandPacket.ANDROID_KIVICCAST_STA_MODE;					
 					applyKivicCast(true);
-				}
-				else if(mModeIdx == ITEM_MODE_NAVIGATION)
-				{
-					mHudMode = KivicModeCommandPacket.ANDROID_TBT_MODE;
-					applyKivicCast(false);
-				}
+				}				
 				else
 				{
 					mHudMode = KivicModeCommandPacket.ANDROID_HUD_MODE;
@@ -407,7 +404,7 @@ public class CommandActivity extends Activity implements View.OnClickListener, S
         castServiceConnection = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
-            	hudApplication.castMessenger = new Messenger(service);                
+            	hudApplication.castMessenger = new Messenger(service);
             }
 
             @Override

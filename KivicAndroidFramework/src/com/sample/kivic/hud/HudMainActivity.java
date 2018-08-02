@@ -16,6 +16,7 @@ import com.kivic.network.packet.command.KivicModeCommandPacket;
 import com.kivic.network.packet.command.SystemTimeCommandPacket;
 import com.kivic.network.packet.command.UartConnectionCheckCommandPacket;
 import com.kivic.network.packet.event.UartConnectionEventPacket;
+import com.sample.kivic.hud.HudApplication.OnHudNetworkServiceChanged;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -67,12 +68,39 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 		
 		overridePendingTransition(0,0);
 		initView();		
-		setupPacketReceiver();
-
-		hudApplication.hudNetworkManager.registerActionStateChange();
-		
+		hudApplication.setOnHudNetworkServiceChanged(hudNetworkServiceChanged);
+		hudApplication.restartHudNetworkService();
     }
 	
+
+	private OnHudNetworkServiceChanged hudNetworkServiceChanged = new OnHudNetworkServiceChanged() {
+
+		@Override
+		public void onHudNetworkServiceChanged(boolean isConnect) {
+			Log.e(TAG, "onHudNetworkServiceChanged : " + isConnect);
+
+			if(isConnect)
+			{
+				setupPacketReceiver();
+				hudApplication.hudNetworkManager.registerActionStateChange();
+
+				if(hudApplication.getDeviceAddress() != null && hudApplication.hudNetworkManager.isGattDisconnectedOrDisconnecting())
+				{
+					mHud_enable_txt.setEnabled(true);
+					mBT_sw.setChecked(true);
+					connectBLE(false);
+				}
+			}
+			else
+			{
+				// restart network service
+
+				hudApplication.closeHudNetworkService();
+				hudApplication.restartHudNetworkService();
+			}
+
+		}
+	};
 	private void initView() {
 		setContentView(R.layout.activity_hud_main);
 
@@ -98,19 +126,22 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 	
 	@Override
 	protected void onResume() {
+		super.onResume();
 		if(!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
 			// bluetooth Off일 경우 On 시키기 위해 처리.
 			startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQUEST_ENABLE_BT);
 		}
+		
+		if(hudApplication.hudNetworkManager == null)
+			return;
 		else if(hudApplication.getDeviceAddress() != null && hudApplication.hudNetworkManager.isGattDisconnectedOrDisconnecting())
 		{
 			mHud_enable_txt.setEnabled(true);
 			mBT_sw.setChecked(true);
-			connectBLE();
+			connectBLE(false);
 		}
 		else {			
 		}
-		super.onResume();
 	}
 
 	@Override
@@ -128,18 +159,25 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 	protected void onDestroy() {
 		Log.i(TAG, "onDestroy()");
 		
-		HudError hudError = hudApplication.hudNetworkManager.closeGatt();
 		hudApplication.setHudConnect(false);
-		
-		hudApplication.hudNetworkManager.unregisterGattStateChangeListener(this);
-		hudApplication.hudNetworkManager.unregisterOnPacketReceiveListener(this);
-		hudApplication.hudNetworkManager.unregisterActionStateChange();
 
 		mHUDCheckHandler.removeCallbacks(mHudHeartBeatTask);
 
+		if(hudApplication.hudNetworkManager != null)
+		{
+			HudError hudError = hudApplication.hudNetworkManager.closeGatt();
+			hudApplication.hudNetworkManager.unregisterGattStateChangeListener(this);
+			hudApplication.hudNetworkManager.unregisterOnPacketReceiveListener(this);
+			hudApplication.hudNetworkManager.unregisterActionStateChange();
+			
+			hudApplication.closeHudNetworkService();
+			
+			hudApplication.hudNetworkManager = null;
+		}
+		
 		super.onDestroy();
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -149,7 +187,7 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 				String deviceAddress = data.getStringExtra(BluetoothDevice.EXTRA_DEVICE);
 				BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(deviceAddress);
 				hudApplication.setGattInfo(deviceAddress, device.getName());
-				connectBLE();
+				//connectBLE();
 			}
 			else
 			{
@@ -170,9 +208,9 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 	/*
 	 * BLE와 연결 함. Device Address는 HudDeviceListActivity에서 받습니다.
 	 */
-	private boolean connectBLE() {
+	private boolean connectBLE(boolean isAuto) {
 		Log.i(TAG, "connectBLE ");
-		HudError hudError = hudApplication.hudNetworkManager.connectGatt(hudApplication.getDeviceAddress());
+		HudError hudError = hudApplication.hudNetworkManager.connectGatt(hudApplication.getDeviceAddress(), isAuto);
 		if (hudError != HudError.SUCCESS) {
 			try {
 				BluetoothDevice device = BluetoothAdapter.getDefaultAdapter()
@@ -194,7 +232,7 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 	 * HUD와 연결 후 초기 설정값을 HUD로 보냄.
 	 */
 	private boolean applyHUDSettings() {
-		final HudNetworkManager hudNetworkManager = hudApplication.hudNetworkManager;
+		final HudNetworkManager hudNetworkManager = hudApplication.hudNetworkManager.hudNetworkManager;
 		
 		// Time
 		Calendar calendar = Calendar.getInstance();
@@ -346,7 +384,7 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 			updateHudStatus(false);
 			hudApplication.hudNetworkManager.closeGatt();
 			if(mBT_sw.isChecked()) {
-				connectBLE();
+				connectBLE(true);
 			}
 		}
 		else {
@@ -378,7 +416,7 @@ public class HudMainActivity extends Activity implements View.OnClickListener,
 		else
 		{
 			if(mBT_sw.isChecked()) {
-				connectBLE();
+				connectBLE(true);
 			}	
 		}
 		

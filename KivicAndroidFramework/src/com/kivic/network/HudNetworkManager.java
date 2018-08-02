@@ -98,11 +98,20 @@ public class HudNetworkManager extends HudNetwork {
 			gattConnectionState = newState;
 			if (newState == BluetoothProfile.STATE_DISCONNECTED) {
 				writeCharacteristic = null;
+				disconnectGatt();
 				Message.obtain(internalHandler, WHAT_GATT_CONNECTION_STATE, BluetoothProfile.STATE_DISCONNECTED, status).sendToTarget();
 			}
-			else if (status != BluetoothGatt.GATT_SUCCESS || !gatt.discoverServices()) {
+			else if (status != BluetoothGatt.GATT_SUCCESS) {
 				//gatt.disconnect();
+				writeCharacteristic = null;
+				disconnectGatt();
 				Message.obtain(internalHandler, WHAT_GATT_CONNECTION_STATE, BluetoothProfile.STATE_DISCONNECTED, status).sendToTarget();
+			}
+			else
+			{
+				bluetoothAdapter.cancelDiscovery();
+				if(!gatt.discoverServices())
+					Message.obtain(internalHandler, WHAT_GATT_CONNECTION_STATE, BluetoothProfile.STATE_DISCONNECTED, status).sendToTarget();				
 			}
 		}
 
@@ -204,7 +213,7 @@ public class HudNetworkManager extends HudNetwork {
 		
 		//setDumpPacket(TAG, true, true);
 	}
-	
+
 	public void resetPacket(){
 		synchronized (mRemainCommand) {
 			mRemainCommand.clear();	
@@ -213,7 +222,6 @@ public class HudNetworkManager extends HudNetwork {
 		mCurrentSendPacket = null;
 		isPacketSend = false;		
 	}
-
 	public void registerActionStateChange()
 	{
 		if(mBluetoothReceiver == null) {
@@ -283,9 +291,8 @@ public class HudNetworkManager extends HudNetwork {
 	public final boolean isGattDisconnectedOrDisconnecting() {
 		return (gattConnectionState == BluetoothProfile.STATE_DISCONNECTED || gattConnectionState == BluetoothProfile.STATE_DISCONNECTING);
 	}
-	
-	@TargetApi(23)
-	public synchronized HudError connectGatt(String address) {
+		
+	public synchronized HudError connectGatt(String address, boolean isAuto) {
 		if (address == null) {
 			return HudError.INVALID_PARAM;
 		}
@@ -307,10 +314,14 @@ public class HudNetworkManager extends HudNetwork {
 			
 			gattConnectionState = BluetoothProfile.STATE_CONNECTING;
 			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-				bluetoothGatt = device.connectGatt(context, true, bluetoothGattCallback, BluetoothDevice.TRANSPORT_LE);
+				bluetoothGatt = device.connectGatt(context, isAuto, bluetoothGattCallback, BluetoothDevice.TRANSPORT_LE);
 			}
 			else {
-				bluetoothGatt = device.connectGatt(context, true, bluetoothGattCallback);
+				if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+					bluetoothGatt = device.connectGatt(context, false, bluetoothGattCallback);
+				else
+					bluetoothGatt = device.connectGatt(context, isAuto, bluetoothGattCallback);
+					
 			}
 			if (bluetoothGatt == null) {
 				gattConnectionState = BluetoothProfile.STATE_DISCONNECTED;
